@@ -28,6 +28,18 @@ int findMax(Node* root)
         res = rres;
     return res;
 }
+void inorder(Node* root, vector<int> &ans)
+{
+    // root is null
+  if(root== NULL)
+       return;
+
+    // for left child
+    inorder(root->left, ans);
+    ans.push_back(root->val);
+    // for right child
+    inorder(root->right, ans);
+}
 
 int main(){
     Node *root=new Node(3);
@@ -43,5 +55,16 @@ int main(){
     root->right->right->left->left=new Node(6);
     
     int result=findMax(root);
-    cout<<"Max Value in Tree:"<< result;
+    cout<<"Max Value in Tree:"<< result<<endl;
+    vector<int> ans;
+     inorder(root, ans);
+     cout<<"inorder traversal is:  ";
+    //print all elements
+       for(int i = 0;i<11;i++)
+        {
+           cout<<ans[i]<<" ";
+        }
+    cout<<endl;
+        
+            
 }
